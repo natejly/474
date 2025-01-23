@@ -63,7 +63,6 @@ class MyPolicy(CribbagePolicy):
         # print(hand)
         return keep, throw
 
-
     def peg(self, cards, history, turn, scores, am_dealer):
                 #greedy agent plays card that maximizes its score 
 
