@@ -50,20 +50,10 @@ def main():
     # print("rolls: ", rolls)
     tree = tree_gen(positions)
     leaf_gen(tree.root)
-    print_tree(tree)
     
     
 
 
-
-def print_tree(tree):
-    def print_node(node, level=0):
-        if node is None:
-            return
-        print(" " * level + str(node.positions))
-        for child in node.children:
-            print_node(child, level + 1)
-    print_node(tree.root)
 
     
 if __name__ == "__main__":
