@@ -1,8 +1,7 @@
 import sys
-import itertools
-from itertools import combinations
-from tree import Node, Tree, tree_gen, leaf_gen
-
+from ev import p1_ev, p2_ev
+from move import get_p1_move, get_p2_move
+import time
 def read_input():
     player = None
     e_m = None
@@ -41,21 +40,20 @@ def read_input():
         
     
 def main():
+    start = time.time()
     player, e_m, p1_score, roll_sum, positions = read_input()
-    print("player: ", player)
-    print("e_m: ", e_m)
-    print("p1_score: ", p1_score)
-    print("roll_sum: ", roll_sum)
-    print("positions: ", positions)
-    # print("rolls: ", rolls)
-    tree = tree_gen(positions)
-    leaf_gen(tree.root)
-    
-    
+    if e_m == "e":
+        if player == 1:
+            print(f"{p1_ev(positions):.6f}")
+        else:
+            print(f"{1-p2_ev(positions, p1_score):.6f}")
+    if e_m == "m":
+        if player == 1:
+            print(list(get_p1_move(positions, roll_sum)))
 
+        else:
+            print(list(get_p2_move(positions, p1_score, roll_sum)))
 
-
-    
 if __name__ == "__main__":
     main()
 
