@@ -1,0 +1,14 @@
+#!/bin/bash
+# Bigger game, optimize wins; not an equilibrium
+
+trap "/usr/bin/killall -q -u $USER ./Blotto 2>/dev/null" 0 1 2 3 9 15
+trap "/bin/rm -f $STDERR" 0 1 2 3 9 15
+if [ ! -x ./Blotto ]; then
+  echo './Blotto is missing or not executable'
+  echo './Blotto is missing or not executable' 1>&2
+  exit 1
+fi
+
+
+/c/cs474/bin/run -stdout=stdout.out -stderr=/dev/null ./Blotto --verify --win 2 4 5 < /c/cs474/hw3/Tests/t010.in
+cat stdout.out  | grep PASSED

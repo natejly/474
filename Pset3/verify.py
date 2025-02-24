@@ -16,31 +16,54 @@ def get_payoffs(mixed, values, determ = True):
 
 def check_NE(mixed, values, tolerance, determ = True):
     payoffs = get_payoffs(mixed, values, determ)
-    print (payoffs)
+    # print (payoffs)
     # check that app payoffs are equal for played strat
-    for i in range(len(payoffs)):
-        p1_strat, p1_payoff = payoffs[i]
-        for j in range(len(payoffs)):
-            p2_strat, p2_payoff = payoffs[j]
-            if i != j:
-                if abs(p1_payoff - p2_payoff) > tolerance:
-                    return False
-
+    mixed_payoffs = [p1_payoff for _, p1_payoff in payoffs]
+    max_payoff = max(mixed_payoffs)
+    min_payoff = min(mixed_payoffs) 
+    if max_payoff - min_payoff > tolerance:
+        return False
+    best_score = best_response(mixed, values, determ)
+    # if best_score > max_payoff + tolerance:
+    #     return False
     return True
+
+#GPT4 give python code for all permutations of a list length n that add up to m
+def find_permutations(n, m):
+    def backtrack(remaining, path):
+        if len(path) == n:
+            if sum(path) == m:
+                results.add(tuple(path))  # Store unique permutations
+            return
+        for i in range(remaining + 1):  # Generate candidates
+            backtrack(remaining - i, path + [i])
+    
+    results = set()
+    backtrack(m, [])
+    return list(results)
+
+def best_response(mixed, values, determ = True):
+    deviant = find_permutations(len(values), int(sum(mixed[0][0])))
+    # print(deviant)
+    best_score = 0
+    for p1_strat, p1_prob in mixed:
+        for strat in deviant:
+            if determ:
+                p1_score, p2_score = score_determ(p1_strat, strat, values)
+            else:
+                p1_score, p2_score, _, _ = score_prob(p1_strat, strat, values) 
+            if p2_score > best_score:
+                best_score = p2_score
+    return best_score
+                  
+
+
+
+
 
 
 if __name__ == "__main__":
-    values = [2, 4, 5]  
-    mixed1 = [
-        ([0, 0, 5], 0.14045462101642173),
-        ([0, 1, 4], 0.15496211495866577),
-        ([0, 2, 3], 0.04541673569373383),
-        ([0, 3, 2], 0.05992422986845587),
-        ([1, 0, 4], 0.08473480443797905),
-        ([1, 1, 3], 0.09503788495378677),
-        ([1, 2, 2], 0.17977268944230548),
-        ([1, 3, 1], 0.1404546206153363),
-        ([1, 4, 0], 0.04962114905424416),
-        ([2, 3, 0], 0.04962114943279007)
-    ]
+    values = [1, 1]  
+    mixed1 = [([1, 0], 1),]
+    best_response(mixed1, values)
     print("Nash Equilibrium" if check_NE(mixed1, values, 1e-5) else "Not a Nash Equilibrium")
