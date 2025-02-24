@@ -53,9 +53,7 @@ def main():
     f_v, tolerance, w_s_l, units, values, mixed = read_input()
     determ = True
     if f_v == "v":
-        if w_s_l == "--lottery":
-            determ = False
-        if check_NE(mixed, values, tolerance, determ):
+        if check_NE(mixed, values, tolerance, w_s_l):
             print("PASSED")
         else:
             print("Nope")
