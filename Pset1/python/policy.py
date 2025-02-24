@@ -1,7 +1,7 @@
 import random
 from abc import ABC, abstractmethod
 
-import scoring
+import Pset3.scoring as scoring
 
 class CribbagePolicy(ABC):
     """ An abstract base class for cribbage policies. """

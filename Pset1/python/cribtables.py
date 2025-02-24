@@ -1,7 +1,7 @@
 import csv
 from policy import CribbagePolicy, CompositePolicy, GreedyThrower, GreedyPegger
 from itertools import combinations
-from scoring import score
+from Pset3.scoring import score
 from deck import Card
 import random
 from cribbage import Game, evaluate_policies

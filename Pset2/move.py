@@ -1,8 +1,5 @@
 from ev import valid_moves, remove, p1_ev, p2_ev
 
-p1_memo = {}
-p2_memo = {}    
-
 def get_p1_move(positions, roll):
     moves = valid_moves(positions, roll)
     best = None

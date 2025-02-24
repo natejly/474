@@ -2,7 +2,7 @@ import itertools as it
 import sys
 import copy
 
-import scoring
+import Pset3.scoring as scoring
 from deck import Deck,Card
 from pegging import Pegging
 

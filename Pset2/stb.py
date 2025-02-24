@@ -35,9 +35,6 @@ def read_input():
     elif player == 2:
         p1_score = int(arguments[4])
     return player, e_m, p1_score, roll_sum, positions
-
-
-        
     
 def main():
     start = time.time()
@@ -50,7 +47,6 @@ def main():
     if e_m == "m":
         if player == 1:
             print(list(get_p1_move(positions, roll_sum)))
-
         else:
             print(list(get_p2_move(positions, p1_score, roll_sum)))
 
