@@ -1,7 +1,7 @@
 import sys
 import math
 from verify import get_payoffs, check_NE
-
+from find import find_mixed_strategies
 def read_input():
     f_v = None
     tolerance = float(1e-6)
@@ -57,8 +57,12 @@ def main():
             print("PASSED")
         else:
             print("Nope")
-    else:
-        print("not yet")
+    elif f_v == "f":
+        strats = find_mixed_strategies(units, values, tolerance, w_s_l)
+        for s, p in strats:
+            print(f"{','.join(map(str, s))},{p:.6f}")
+        
+        
     
 if __name__ == "__main__":
     main()
