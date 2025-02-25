@@ -25,7 +25,7 @@ def find_mixed_strategy(units, values, tolerance, obj):
     # constrain probs to adding to 1
     A_eq = [[1]*n + [0]] 
     b_eq = [1] 
-    res = linprog(c, A_ub, b_ub, A_eq, b_eq)
+    res = linprog(c, A_ub, b_ub, A_eq, b_eq, method="highs")
     prob = res.x[:-1]
     return prob, strategies
 

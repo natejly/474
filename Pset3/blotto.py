@@ -60,7 +60,7 @@ def main():
     elif f_v == "f":
         prob, strategies = find_mixed_strategy(units, values, tolerance, w_s_l)
         for s, p in zip(strategies, prob):
-            if p > 0:
+            if p > tolerance:
                 print(f"{','.join(map(str, s))},{p}")
         
         
