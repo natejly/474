@@ -1,0 +1,9 @@
+#!/bin/bash
+/c/cs474/bin/submit 3 blotto.py
+/c/cs474/bin/submit 3 find.py
+/c/cs474/bin/submit 3 makefile
+/c/cs474/bin/submit 3 scoring.py
+/c/cs474/bin/submit 3 verify.py
+
+
+

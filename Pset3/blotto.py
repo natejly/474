@@ -1,5 +1,7 @@
 import sys
 import math
+from verify import get_payoffs, check_NE
+from find import find_mixed_strategies
 def read_input():
     f_v = None
     tolerance = float(1e-6)
@@ -37,15 +39,31 @@ def read_input():
             values = [int(i) for i in args[3:]]
 
     if f_v == "v":
-        std_in = sys.stdin.read()
-        for line in std_in:
-            terms = line.split(",")
-            strat = [int(x) for x in terms[:-1]]
-            prob = float(terms[-1])
+        std_in = sys.stdin.read().strip()  # Remove leading/trailing spaces
+        for line in std_in.splitlines():  # Split into separate lines
+            terms = line.strip().split(",")  # Remove spaces and split
+            strat = [float(x) for x in terms[:-1]]  # Convert strategy values
+            prob = float(terms[-1])  # Convert probability
             mixed.append((strat, prob))
             
-            
 
-            
     return f_v, tolerance, w_s_l, units, values, mixed
+
+def main():
+    f_v, tolerance, w_s_l, units, values, mixed = read_input()
+    determ = True
+    if f_v == "v":
+        if check_NE(mixed, values, tolerance, w_s_l):
+            print("PASSED")
+        else:
+            print("Nope")
+    elif f_v == "f":
+        strats = find_mixed_strategies(units, values, tolerance, w_s_l)
+        for s, p in strats:
+            print(f"{','.join(map(str, s))},{p:.6f}")
+        
+        
+    
+if __name__ == "__main__":
+    main()
 
