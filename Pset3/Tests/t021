@@ -1,0 +1,14 @@
+#!/bin/bash
+# Higher tolerance, find
+
+trap "/usr/bin/killall -q -u $USER ./Blotto 2>/dev/null" 0 1 2 3 9 15
+trap "/bin/rm -f $STDERR" 0 1 2 3 9 15
+if [ ! -x ./Blotto ]; then
+  echo './Blotto is missing or not executable'
+  echo './Blotto is missing or not executable' 1>&2
+  exit 1
+fi
+
+
+/c/cs474/bin/run -stdout=stdout.out -stderr=/dev/null ./Blotto --find --tolerance 1e-05 --win --units 5 2 4 5 < /dev/null
+cat stdout.out  | ./Blotto --verify --tolerance 1e-05 --win 2 4 5
