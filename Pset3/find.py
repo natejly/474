@@ -1,8 +1,6 @@
 from verify import find_permutations, scoring
-import sys
 import numpy as np
 from scipy.optimize import linprog
-from scoring import score_determ, score_prob
 
 def get_matrix(units, values, tolerance, obj):
     strategies = sorted(find_permutations(len(values), units))
@@ -33,8 +31,8 @@ if __name__ == "__main__":
     units = 5
     values = [2, 4, 5]
     obj = "--win"
-
-    prob, strategies = find_mixed_strategy(units, values, obj)
+    tolerance = 10e-6
+    prob, strategies = find_mixed_strategy(units, values, tolerance, obj)
     print("Optimal Mixed Strategy:")
     for strat, prob in zip(strategies, prob):
-        print(f"  Strategy {strat}: {prob:.4f}")
+        print(f"  Strategy {strat}: {prob}")

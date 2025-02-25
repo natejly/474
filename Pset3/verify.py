@@ -2,6 +2,7 @@ from scoring import score_determ, score_prob
 # GPT helped with obj --win logic becsause I didn't realize it was a different scoring logic
 # refactored from OG code at 11:40 2/23
 def scoring(p1_strat, p2_strat, values, p1_prob, p2_prob, obj):
+    # want to win the most battles
     if obj == '--win':
         p1_score, p2_score = score_determ(p1_strat, p2_strat, values)
         if p1_score > p2_score:
@@ -11,13 +12,14 @@ def scoring(p1_strat, p2_strat, values, p1_prob, p2_prob, obj):
         else:
             outcome = 0.0
         payoff = outcome * p2_prob
+    # want to get the most points under deterministic scoring
     elif obj == '--score':
         p1_score, _ = score_determ(p1_strat, p2_strat, values)
         payoff = p1_score * p2_prob
+    # want to get the most points under probabilistic scoring
     elif obj == '--lottery':
         p1_score, _, _, _ = score_prob(p1_strat, p2_strat, values)
         payoff = p1_score * p2_prob
-    
     return payoff
 
 def get_payoffs(mixed, values, obj):

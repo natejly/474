@@ -4,7 +4,7 @@ from verify import get_payoffs, check_NE
 from find import find_mixed_strategy
 def read_input():
     f_v = None
-    tolerance = float(1e-6)
+    tolerance = float(10e-6)
     w_s_l = None
     units = None
     values = None
@@ -51,7 +51,6 @@ def read_input():
 
 def main():
     f_v, tolerance, w_s_l, units, values, mixed = read_input()
-    determ = True
     if f_v == "v":
         if check_NE(mixed, values, tolerance, w_s_l):
             print("PASSED")
