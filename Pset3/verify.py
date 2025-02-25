@@ -62,21 +62,10 @@ def find_permutations(n, m):
     return list(results)
 
 if __name__ == "__main__":
-    values = [2, 4, 5]  
+    values = [1, 2]  
+    obj = "--win"  # Objective function
     mixed1 = [
-    ([0, 0, 5], 0.07428558119961398),
-    ([0, 1, 4], 0.0628572491429189),
-    ([0, 2, 3], 0.0514285583023659),
-    ([0, 3, 2], 0.10857121203986661),
-    ([1, 0, 4], 0.13142860782053217),
-    ([1, 1, 3], 0.01714278781855886),
-    ([1, 2, 2], 0.017143017862373943),
-    ([1, 3, 1], 0.13142851264458152),
-    ([2, 0, 3], 0.10857157877490509),
-    ([2, 1, 2], 0.05142853222724512),
-    ([2, 2, 1], 0.06285716721342921),
-    ([2, 3, 0], 0.074285740412162),
-    ([3, 2, 0], 0.10857132632298054),
+    ([0, 2],1)
 ]
 
-    print("Nash Equilibrium" if check_NE(mixed1, values, 1e-5) else "Not a Nash Equilibrium")
+    print("Nash Equilibrium" if check_NE(mixed1, values, 1e-5, obj) else "Not a Nash Equilibrium")

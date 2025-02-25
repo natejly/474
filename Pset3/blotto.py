@@ -1,7 +1,7 @@
 import sys
 import math
 from verify import get_payoffs, check_NE
-from find import find_mixed_strategies
+from find import find_mixed_strategy
 def read_input():
     f_v = None
     tolerance = float(1e-6)
@@ -37,13 +37,13 @@ def read_input():
                 values = [int(i) for i in args[3:]]
         else:
             values = [int(i) for i in args[3:]]
-
+    # had GPT help with reading and added the .strip and .splitlines()
     if f_v == "v":
-        std_in = sys.stdin.read().strip()  # Remove leading/trailing spaces
-        for line in std_in.splitlines():  # Split into separate lines
-            terms = line.strip().split(",")  # Remove spaces and split
-            strat = [float(x) for x in terms[:-1]]  # Convert strategy values
-            prob = float(terms[-1])  # Convert probability
+        std_in = sys.stdin.read().strip() 
+        for line in std_in.splitlines():  
+            terms = line.strip().split(",") 
+            strat = [float(x) for x in terms[:-1]]  
+            prob = float(terms[-1])  
             mixed.append((strat, prob))
             
 
@@ -58,9 +58,10 @@ def main():
         else:
             print("Nope")
     elif f_v == "f":
-        strats = find_mixed_strategies(units, values, tolerance, w_s_l)
-        for s, p in strats:
-            print(f"{','.join(map(str, s))},{p:.6f}")
+        prob, strategies = find_mixed_strategy(units, values, tolerance, w_s_l)
+        for s, p in zip(strategies, prob):
+            if p > 0:
+                print(f"{','.join(map(str, s))},{p}")
         
         
     
