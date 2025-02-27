@@ -14,7 +14,7 @@ def get_matrix(units, values, tolerance, obj):
 def find_mixed_strategy(units, values, tolerance, obj):
     payoff_matrix, strategies = get_matrix(units, values, tolerance, obj)
     n = len(strategies)
-    # (v, strats ...)
+    # (strats ...,v)
     c = np.zeros(n + 1)
     c[-1] = -1 
     A_ub = -payoff_matrix.T
