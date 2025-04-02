@@ -1,0 +1,13 @@
+#!/bin/bash
+# 0.05 seconds
+
+trap "/usr/bin/killall -q -u $USER ./MCTS 2>/dev/null" 0 1 2 3 9 15
+trap "/bin/rm -f $STDERR" 0 1 2 3 9 15
+if [ ! -x ./MCTS ]; then
+  echo './MCTS is missing or not executable'
+  echo './MCTS is missing or not executable' 1>&2
+  exit 1
+fi
+
+
+/c/cs474/bin/run -stderr=/dev/null ./MCTS < /dev/null

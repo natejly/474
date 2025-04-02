@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 /c/cs474/hw4/Final/check_score.py $1

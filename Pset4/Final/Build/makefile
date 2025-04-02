@@ -1,0 +1,159 @@
+ALL_GAMES=scores_kalah_0.25.txt scores_kalah_1.0.txt scores_kalah_0.1.txt scores_kalah_0.5.txt scores_pegging_0.005.txt scores_pegging_0.01.txt scores_pegging_0.02.txt scores_pegging_0.05.txt scores_pegging-5_0.01.txt scores_pegging-5_0.05.txt scores_pegging-5_0.1.txt
+
+all: MCTS scores
+
+MCTS: FORCE
+	cp /c/cs474/hw4/Final/Build/MCTS .
+
+scores_kalah_0.25.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=500 --depth=4 --random=0.1 --time=0.25 >> scores_kalah_0.25.txt; \
+	done; \
+	echo "kalah 0.25s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_kalah_1.0.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=100 --depth=4 --random=0.1 --time=1.0 >> scores_kalah_1.0.txt; \
+	done
+	echo "kalah 1.0s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_kalah_0.1.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=500 --depth=4 --random=0.1 --time=0.1 >> scores_kalah_0.1.txt; \
+	done; \
+	echo "kalah 0.1s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_kalah_0.5.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=100 --depth=4 --random=0.1 --time=0.5 >> scores_kalah_0.5.txt; \
+	done
+	echo "kalah 0.5s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_kalah_0.1.txt.1:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=500 --depth=4 --random=0.1 --time=0.1 >> scores_kalah_0.1.txt.1; \
+	done; \
+	echo "kalah 0.1s !1" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_kalah_0.5.txt.1:
+	for X in `seq 1 10`; do \
+		./MCTS --game=kalah --count=100 --depth=4 --random=0.1 --time=0.5 >> scores_kalah_0.5.txt.1; \
+	done
+	echo "kalah 0.5s !1" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.005.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=4000 --depth=14 --time=0.005 >> scores_pegging_0.005.txt; \
+	done; \
+	echo "pegging 0.005s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.01.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=2500 --depth=14 --time=0.01 >> scores_pegging_0.01.txt; \
+	done; \
+	echo "pegging 0.01s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.02.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=1600 --depth=14 --time=0.02 >> scores_pegging_0.02.txt; \
+	done; \
+	echo "pegging 0.02s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.05.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=1000 --depth=14 --time=0.05 >> scores_pegging_0.05.txt; \
+	done; \
+	echo "pegging 0.05s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.05.txt.1:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=1000 --depth=14 --time=0.05 >> scores_pegging_0.05.txt.1; \
+	done; \
+	echo "pegging 0.05s !1" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging_0.08.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging --count=1000 --depth=14 --time=0.08 >> scores_pegging_0.08.txt; \
+	done; \
+	echo "pegging 0.08s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging-5_0.01.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging-5 --count=2500 --depth=10 --time=0.01 >> scores_pegging-5_0.01.txt; \
+	done; \
+	echo "pegging-5 0.01s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging-5_0.02.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging-5 --count=1600 --depth=10 --time=0.02 >> scores_pegging-5_0.02.txt; \
+	done; \
+	echo "pegging-5 0.02s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging-5_0.05.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging-5 --count=1000 --depth=10 --time=0.05 >> scores_pegging-5_0.05.txt; \
+	done; \
+	echo "pegging-5 0.05s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging-5_0.05.txt.1:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging-5 --count=1000 --depth=10 --time=0.05 >> scores_pegging-5_0.05.txt.1; \
+	done; \
+	echo "pegging-5 0.05s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+scores_pegging-5_0.1.txt:
+	for X in `seq 1 10`; do \
+		./MCTS --game=pegging-5 --count=1000 --depth=10 --time=0.1 >> scores_pegging-5_0.1.txt; \
+	done; \
+	echo "pegging-5 0.1s" >> uptimes; \
+	hostname >> uptimes; \
+	uptime >> uptimes
+
+
+#scores: scores_pegging_0.01.txt scores_pegging_0.05.txt scores_pegging_0.05.txt.1 scores_pegging-5_0.01.txt scores_pegging-5_0.05.txt scores_kalah_0.1.txt scores_kalah_0.1.txt.1  scores_kalah_0.5.txt scores_kalah_0.5.txt.1
+scores: scores_pegging_0.01.txt scores_pegging_0.05.txt scores_kalah_0.25.txt scores_kalah_1.0.txt
+	grep NET scores_pegging_0.01.txt | sed "s/NET/NET_PEG-4_01/" > scores
+	grep NET scores_pegging_0.05.txt | sed "s/NET/NET_PEG-4_05/" >> scores
+	#grep NET scores_pegging_0.05.txt.1 | sed "s/NET/NET_PEG-4_05/" >> scores
+	#grep NET scores_pegging-5_0.01.txt | sed "s/NET/NET_PEG-5_01/" >> scores
+	#grep NET scores_pegging-5_0.05.txt | sed "s/NET/NET_PEG-5_05/" >> scores
+	#grep NET scores_kalah_0.1.txt | sed "s/NET/NET_KALAH_10/" >> scores
+	#grep NET scores_kalah_0.1.txt.1 | sed "s/NET/NET_KALAH_10/" >> scores
+	#grep NET scores_kalah_0.5.txt | sed "s/NET/NET_KALAH_50/" >> scores
+	#grep NET scores_kalah_0.5.txt.1 | sed "s/NET/NET_KALAH_50/" >> scores
+	grep NET scores_kalah_0.25.txt | sed "s/NET/NET_KALAH_25/" >> scores
+	grep NET scores_kalah_1.0.txt | sed "s/NET/NET_KALAH_100/" >> scores
+
+FORCE:
