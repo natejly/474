@@ -55,14 +55,14 @@ def traverse(node, end):
             return child
         # not terminal all moves used recurse on max ucb
         current = max(current.children, key=lambda x: ucb(x))
-        if time.time() >= end:
-            return None
+        # if time.time() >= end:
+        #     return None
     
 def rollout(node, end):
     current = node.pos
     while True:
-        if time.time() >= end:
-            return None
+        # if time.time() >= end:
+        #     return None
         if current.is_terminal():
             return current.payoff()
         actions = current.get_actions()
@@ -88,11 +88,11 @@ def policy(position, limit):
         if time.time() >= end:
             break
         node = traverse(root, end)
-        if node is None:
-            break
+        # if node is None:
+        #     break
         payoff = rollout(node, end)
-        if payoff is None:
-            break
+        # if payoff is None:
+        #     break
         bp(node, payoff)
     # total_iterations += 1  
     # print("taken : " + str(time.time() - start))
